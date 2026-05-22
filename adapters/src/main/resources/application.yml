@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: secure-statement-delivery
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/ssd}
+    username: ${POSTGRES_USER:ssd}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: validate
+    properties.hibernate.jdbc.time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  data:
+    redis:
+      url: ${REDIS_URL:redis://localhost:6379}
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 26MB
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${OAUTH_ISSUER_URI:http://localhost:8080/dev}
+          jwk-set-uri: ${OAUTH_JWKS_URI:http://localhost:8080/dev/jwks}
+
+server:
+  forward-headers-strategy: framework
+  error.include-message: never
+  error.include-binding-errors: never
+
+management:
+  endpoints.web.exposure.include: health, prometheus, info
+  endpoint.health.probes.enabled: true
+  endpoint.health.show-details: never
+  metrics.tags.application: ssd
+  tracing.sampling.probability: 1.0
+
+ssd:
+  upload:
+    maxBytes: 26214400
+  link:
+    defaultTtlSeconds: 900
+    defaultMaxDownloads: 1
+  storage:
+    bucket: ${S3_BUCKET:statements}
+    endpoint: ${S3_ENDPOINT:http://localhost:9000}
+    region: ${S3_REGION:us-east-1}
+    accessKey: ${S3_ACCESS_KEY}
+    secretKey: ${S3_SECRET_KEY}
+    pathStyle: true
+  crypto:
+    kekFilePath: ${KEK_FILE_PATH}
+    kekKeyId: ${KEK_KEY_ID:kek-1}
+  scanner:
+    host: ${CLAMAV_HOST:localhost}
+    port: ${CLAMAV_PORT:3310}
+    failureThreshold: 5
+  security:
+    devTokenSecret: ${DEV_TOKEN_SECRET:disabled}

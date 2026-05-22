@@ -1,0 +1,6 @@
+spring:
+  jpa.hibernate.ddl-auto: validate
+  flyway.enabled: true
+ssd:
+  upload.maxBytes: 1048576
+  security.devTokenSecret: test-secret

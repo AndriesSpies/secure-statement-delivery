@@ -35,7 +35,6 @@ dependencies {
     testImplementation(libs.testcontainers.junit)
     testImplementation(libs.testcontainers.postgres)
     testImplementation(libs.testcontainers.minio)
-    testImplementation(libs.testcontainers.clamav)
     testImplementation(libs.testcontainers.redis)
 }
 
