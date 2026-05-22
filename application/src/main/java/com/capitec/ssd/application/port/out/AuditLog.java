@@ -2,6 +2,7 @@ package com.capitec.ssd.application.port.out;
 
 import java.time.Instant;
 import java.util.Map;
+import org.jspecify.annotations.Nullable;
 
 public interface AuditLog {
   enum Type {
@@ -18,9 +19,9 @@ public interface AuditLog {
       Instant at,
       Type type,
       String actor,
-      String actorIp,
-      String statementId,
-      byte[] linkTokenHash,
+      @Nullable String actorIp,
+      @Nullable String statementId,
+      byte @Nullable [] linkTokenHash,
       Map<String, Object> detail) {}
 
   void append(Event e);
