@@ -3,8 +3,8 @@ package com.capitec.ssd.domain.statement;
 import com.capitec.ssd.domain.common.*;
 import java.time.Instant;
 import java.util.Objects;
+import org.jspecify.annotations.Nullable;
 
-@SuppressWarnings("NullAway")
 public final class Statement {
   private final StatementId id;
   private final CustomerId customerId;
@@ -18,7 +18,7 @@ public final class Statement {
   private final String createdBy;
   private final Instant createdAt;
   private StatementStatus status;
-  private String rejectionReason;
+  private @Nullable String rejectionReason;
   private Instant updatedAt;
 
   private Statement(
@@ -34,7 +34,7 @@ public final class Statement {
       String createdBy,
       Instant createdAt,
       StatementStatus status,
-      String rejectionReason,
+      @Nullable String rejectionReason,
       Instant updatedAt) {
     this.id = id;
     this.customerId = customerId;
@@ -96,7 +96,7 @@ public final class Statement {
       String createdBy,
       Instant createdAt,
       StatementStatus status,
-      String rejectionReason,
+      @Nullable String rejectionReason,
       Instant updatedAt) {
     return new Statement(
         id,
@@ -186,7 +186,7 @@ public final class Statement {
     return status;
   }
 
-  public String rejectionReason() {
+  public @Nullable String rejectionReason() {
     return rejectionReason;
   }
 

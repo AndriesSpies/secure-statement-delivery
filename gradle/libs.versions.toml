@@ -18,6 +18,7 @@ nullaway = "0.12.1"
 errorpronePlugin = "4.0.1"
 pitest = "1.15.0"
 pitestPlugin = "1.15.0"
+jspecify = "1.0.0"
 
 [libraries]
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
@@ -48,6 +49,7 @@ springdoc-openapi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-u
 nimbus-jose-jwt = { module = "com.nimbusds:nimbus-jose-jwt", version = "9.40" }
 nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway" }
 errorprone-core = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone" }
+jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
 
 [plugins]
 springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }

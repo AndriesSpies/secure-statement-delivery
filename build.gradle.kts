@@ -24,6 +24,7 @@ subprojects {
     dependencies {
         "errorprone"(rootProject.libs.errorprone.core)
         "errorprone"(rootProject.libs.nullaway)
+        "implementation"(rootProject.libs.jspecify)
     }
 
     tasks.withType<JavaCompile>().configureEach {

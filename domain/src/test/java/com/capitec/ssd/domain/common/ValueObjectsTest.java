@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class ValueObjectsTest {
 
   @Test
-  @SuppressWarnings("NullAway")
+  @SuppressWarnings("NullAway") // deliberately verifies null-rejection
   void customerId_rejects_blank() {
     assertThatThrownBy(() -> new CustomerId("")).isInstanceOf(IllegalArgumentException.class);
     assertThatThrownBy(() -> new CustomerId(" ")).isInstanceOf(IllegalArgumentException.class);
